@@ -1,14 +1,15 @@
-package com.gridnine.testing;
+package com.gridnine.testing.entity;
+
 import java.util.List;
 import java.util.stream.Collectors;
 public class Flight {
     private final List<Segment> segments;
 
-    Flight(final List<Segment> segs) {
+    public Flight(final List<Segment> segs) {
         segments = segs;
     }
 
-    List<Segment> getSegments() {
+    public List<Segment> getSegments() {
         return segments;
     }
 
