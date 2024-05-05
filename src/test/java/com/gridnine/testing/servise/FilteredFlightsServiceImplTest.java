@@ -101,7 +101,7 @@ class FilteredFlightsServiceImplTest {
                         createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(9),threeDaysFromNow.plusHours(23), threeDaysFromNow.plusHours(25))
                 );
 
-        List<Flight> actualList =  filteredFlightsServicelmpl.eraseSegmentsWithArrivalDateEarlieThanDepartureDate(listFlighWithEraseFlightsWhereLandingMoreTwwoHoudrs);
+        List<Flight> actualList =  filteredFlightsServicelmpl.eraselightsWhereLandingMoreTwwoHoudrs(listFlighWithEraseFlightsWhereLandingMoreTwwoHoudrs);
         List<Flight> exceptedList =  listFlighWithoutEraselightsWhereLandingMoreTwoHoudrs;
         assertEquals(exceptedList.size(), actualList.size());
 
