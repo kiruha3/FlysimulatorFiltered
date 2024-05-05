@@ -1,8 +1,8 @@
-package com.gridnine.testing.servise;
+package com.gridnine.testing.servise.Impl;
 
 import com.gridnine.testing.entity.Flight;
 import com.gridnine.testing.entity.Segment;
-import com.gridnine.testing.servise.interfaceForService.FilteredFlightsService;
+import com.gridnine.testing.servise.FilteredFlightsService;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FilteredFlightsServiceImpl implements FilteredFlightsService {
+    //Метод eraseDepartureToCurrentPointInTime с выводом названия метода нужен для наглядности
     @Override
     public List<Flight> eraseDepartureToCurrentPointInTime(List<Flight> listFlight, String textMessage) {
         List<Flight> listeWithoutEraseDepartureToCurrentPointInTime = listFlight
@@ -27,6 +28,18 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
         return listeWithoutEraseDepartureToCurrentPointInTime;
     }
 
+    //Метод eraseDepartureToCurrentPointInTime без вывода названия метода
+    @Override
+    public List<Flight> eraseDepartureToCurrentPointInTime(List<Flight> listFlight) {
+        List<Flight> listeWithoutEraseDepartureToCurrentPointInTime = listFlight
+                .stream()
+                .filter(flight -> flight.getSegments().stream().allMatch(segment -> segment.getDepartureDate()
+                        .isAfter(LocalDateTime.now())))
+                .collect(Collectors.toList());
+        return listeWithoutEraseDepartureToCurrentPointInTime;
+    }
+
+    //Метод eraseSegmentsWithArrivalDateEarlieThanDepartureDate с выводом названия метода нужен для наглядности
     @Override
     public List<Flight> eraseSegmentsWithArrivalDateEarlieThanDepartureDate(List<Flight> listFlight, String textMessage) {
         List<Flight> listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate = listFlight
@@ -42,7 +55,18 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
 
         return listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate;
     }
+    //Метод eraseSegmentsWithArrivalDateEarlieThanDepartureDate без вывода названия метода
+    @Override
+    public List<Flight> eraseSegmentsWithArrivalDateEarlieThanDepartureDate(List<Flight> listFlight) {
+        List<Flight> listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate = listFlight
+                .stream()
+                .filter(flight -> flight.getSegments().stream()
+                        .allMatch(segment -> segment.getDepartureDate().isBefore(segment.getArrivalDate())))
+                .collect(Collectors.toList());
+        return listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate;
+    }
 
+    //Метод eraselightsWhereLandingMoreTwwoHoudrs с выводом названия метода нужен для наглядности
     @Override
     public List<Flight> eraselightsWhereLandingMoreTwwoHoudrs(List<Flight> listFlight, String textMessage) {
         List<Flight> listWithoutEraseFlightsArrivalAfterNow = listFlight.stream()
@@ -57,6 +81,18 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
         return listWithoutEraseFlightsArrivalAfterNow;
     }
 
+
+    //Метод eraselightsWhereLandingMoreTwwoHoudrs без вывода названия метода
+    @Override
+    public List<Flight> eraselightsWhereLandingMoreTwwoHoudrs(List<Flight> listFlight) {
+        List<Flight> listWithoutEraseFlightsArrivalAfterNow = listFlight.stream()
+                .filter(flight ->
+                        searchFlightWhereLandingMorreThenTwoHours(flight.getSegments()))
+                .collect(Collectors.toList());
+        return listWithoutEraseFlightsArrivalAfterNow;
+    }
+
+    //реализация модуля для поиска для отсеивания рейсов с нахождением 2 часов между прилетом и вылетом следующего рейса на земле
     @Override
     public boolean searchFlightWhereLandingMorreThenTwoHours(List<Segment> listSegments) {
         int listSize = listSegments.size();
@@ -78,11 +114,13 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
         return true;
     }
 
+    //реализация нахождения разницы между двумя датами
     @Override
     public Duration getDuration(LocalDateTime time1, LocalDateTime time2) {
         return Duration.between(time1, time2);
     }
 
+    //кастомный вывод перелетов, для просмотра перелетов\рейсов
     @Override
     public void inputfilterFlights(List<Flight> filterFlights) {
         DateTimeFormatter fmt =
