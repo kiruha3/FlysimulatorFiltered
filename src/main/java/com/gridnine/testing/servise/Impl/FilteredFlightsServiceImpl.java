@@ -24,6 +24,14 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     }
 
     //Метод eraseDepartureToCurrentPointInTime без вывода названия метода
+    /**
+     * eraseDepartureToCurrentPointInTime() должен исключить Вылеты до текущего момента времени\
+     *
+     * реализован с помощью stream, используется фильтрация
+     * получаем полет, делим на сегменты получаем сегменты и с ними работаем
+     * собираем в список
+     * и возвращаем обработанный список
+     *  **/
     @Override
     public List<Flight> eraseDepartureToCurrentPointInTime(List<Flight> listFlight) {
         return listFlight
@@ -44,7 +52,16 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
 
         return listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate;
     }
+
     //Метод eraseSegmentsWithArrivalDateEarlieThanDepartureDate без вывода названия метода
+    /**
+     * eraseSegmentsWithArrivalDateEarlieThanDepartureDate() должен исключить ЕСЛИ ЕСТЬ сегменты с датой прилёта раньше даты вылета
+     *
+     * реализован с помощью stream, используется фильтрация
+     * получаем полет, делим на сегменты получаем сегменты и с ними работаем
+     * собираем в список
+     * и возвращаем обработанный список
+     *  **/
     @Override
     public List<Flight> eraseSegmentsWithArrivalDateEarlieThanDepartureDate(List<Flight> listFlight) {
         return listFlight
@@ -68,6 +85,14 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
 
 
     //Метод eraselightsWhereLandingMoreTwwoHoudrs без вывода названия метода
+    /**
+     * eraselightsWhereLandingMoreTwwoHoudrs() должен исключить ЕСЛИ ЕСТЬ сегменты Общее время, КОТОРЫХ проведённое на земле превышает два часа
+     *
+     * реализован с помощью stream, используется фильтрация
+     * получаем полет, делим на сегменты получаем сегменты и с ними работаем
+     * собираем в список
+     * и возвращаем обработанный список
+     *  **/
     @Override
     public List<Flight> eraselightsWhereLandingMoreTwwoHoudrs(List<Flight> listFlight) {
         return listFlight.stream()
@@ -77,6 +102,18 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     }
 
     //реализация модуля для поиска для отсеивания рейсов с нахождением 2 часов между прилетом и вылетом следующего рейса на земле
+    /**
+     * searchFlightWhereLandingMorreThenTwoHours() Реализация поиска диапазона между прилетом и вылетом более 2 часов,
+     * в случае нахождения возвращает
+     * false
+     * для пропуска элемента
+     *
+     * реализован с помощью stream, используется фильтрация
+     * получаем полет, делим на сегменты получаем сегменты и с ними работаем
+     * собираем в список
+     * и возвращаем обработанный список
+     *
+     **/
     @Override
     public boolean searchFlightWhereLandingMorreThenTwoHours(List<Segment> listSegments) {
         int listSize = listSegments.size();
@@ -103,6 +140,7 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     public Duration getDuration(LocalDateTime time1, LocalDateTime time2) {
         return Duration.between(time1, time2);
     }
+
 
     //кастомный вывод перелетов, для просмотра перелетов\рейсов
     @Override
