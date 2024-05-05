@@ -41,6 +41,7 @@ class FilteredFlightsServiceImplTest {
 
         List<Flight> actualList =  filteredFlightsServicelmpl.eraseDepartureToCurrentPointInTime(listFlighWithDepartToCurrentPointInTime);
         List<Flight> exceptedList =  listFlighWitouthDepartToCurrentPointInTime;
+
         assertEquals(exceptedList.size(), actualList.size());
         for (int i = 0; i < exceptedList.size(); i++) {
             assertEquals(exceptedList.get(i).toString(), actualList.get(i).toString());
@@ -71,6 +72,7 @@ class FilteredFlightsServiceImplTest {
         List<Flight> actualList =  filteredFlightsServicelmpl.eraseSegmentsWithArrivalDateEarlieThanDepartureDate(listFlighWithSegmentsWithArrivalDateEarlieThanDepartureDate);
         List<Flight> exceptedList =  listFlighWitouthSegmentsWithArrivalDateEarlieThanDepartureDate;
         assertEquals(exceptedList.size(), actualList.size());
+
         for (int i = 0; i < exceptedList.size(); i++) {
             assertEquals(exceptedList.get(i).toString(), actualList.get(i).toString());
         }
@@ -80,7 +82,7 @@ class FilteredFlightsServiceImplTest {
     void eraselightsWhereLandingMoreTwwoHoudrs_Test() {
         final FilteredFlightsServiceImpl filteredFlightsServicelmpl = new FilteredFlightsServiceImpl();
         LocalDateTime threeDaysFromNow = LocalDateTime.now().plusDays(3);
-        List<Flight> listFlighWithEraselightsWhereLandingMoreTwwoHoudrs = Arrays.asList(
+        List<Flight> listFlighWithEraseFlightsWhereLandingMoreTwwoHoudrs = Arrays.asList(
                 createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(9),threeDaysFromNow.plusHours(23), threeDaysFromNow.plusHours(25)),
                 createFlight(threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(4)),
                 createFlight(threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(4), threeDaysFromNow.plusHours(5)),
@@ -91,7 +93,7 @@ class FilteredFlightsServiceImplTest {
                 createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(9),threeDaysFromNow.plusHours(23), threeDaysFromNow.plusHours(25))
         );
 
-                List<Flight> listFlighWithoutEraselightsWhereLandingMoreTwwoHoudrs = Arrays.asList(
+                List<Flight> listFlighWithoutEraselightsWhereLandingMoreTwoHoudrs = Arrays.asList(
                         createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(9),threeDaysFromNow.plusHours(23), threeDaysFromNow.plusHours(25)),
                         createFlight(threeDaysFromNow.minusHours(4), threeDaysFromNow.plusHours(6),threeDaysFromNow.plusHours(7), threeDaysFromNow.plusHours(9)),
                         createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3)),
@@ -99,9 +101,10 @@ class FilteredFlightsServiceImplTest {
                         createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(9),threeDaysFromNow.plusHours(23), threeDaysFromNow.plusHours(25))
                 );
 
-        List<Flight> actualList =  filteredFlightsServicelmpl.eraseSegmentsWithArrivalDateEarlieThanDepartureDate(listFlighWithEraselightsWhereLandingMoreTwwoHoudrs);
-        List<Flight> exceptedList =  listFlighWithoutEraselightsWhereLandingMoreTwwoHoudrs;
+        List<Flight> actualList =  filteredFlightsServicelmpl.eraseSegmentsWithArrivalDateEarlieThanDepartureDate(listFlighWithEraseFlightsWhereLandingMoreTwwoHoudrs);
+        List<Flight> exceptedList =  listFlighWithoutEraselightsWhereLandingMoreTwoHoudrs;
         assertEquals(exceptedList.size(), actualList.size());
+
         for (int i = 0; i < actualList.size(); i++) {
             assertEquals(actualList.get(i).toString(), actualList.get(i).toString());
         }

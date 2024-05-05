@@ -14,12 +14,7 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     //Метод eraseDepartureToCurrentPointInTime с выводом названия метода нужен для наглядности
     @Override
     public List<Flight> eraseDepartureToCurrentPointInTime(List<Flight> listFlight, String textMessage) {
-        List<Flight> listeWithoutEraseDepartureToCurrentPointInTime = listFlight
-                .stream()
-                .filter(flight -> flight.getSegments().stream()
-                        .allMatch(segment -> segment.getDepartureDate()
-                                .isAfter(LocalDateTime.now())))
-                .collect(Collectors.toList());
+        List<Flight> listeWithoutEraseDepartureToCurrentPointInTime = eraseDepartureToCurrentPointInTime(listFlight);
 
         System.out.println("\n textMessage = " + textMessage);
 
@@ -31,23 +26,17 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     //Метод eraseDepartureToCurrentPointInTime без вывода названия метода
     @Override
     public List<Flight> eraseDepartureToCurrentPointInTime(List<Flight> listFlight) {
-        List<Flight> listeWithoutEraseDepartureToCurrentPointInTime = listFlight
+        return listFlight
                 .stream()
                 .filter(flight -> flight.getSegments().stream().allMatch(segment -> segment.getDepartureDate()
                         .isAfter(LocalDateTime.now())))
                 .collect(Collectors.toList());
-        return listeWithoutEraseDepartureToCurrentPointInTime;
     }
 
     //Метод eraseSegmentsWithArrivalDateEarlieThanDepartureDate с выводом названия метода нужен для наглядности
     @Override
     public List<Flight> eraseSegmentsWithArrivalDateEarlieThanDepartureDate(List<Flight> listFlight, String textMessage) {
-        List<Flight> listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate = listFlight
-                .stream()
-                .filter(flight -> flight.getSegments().stream()
-                        .allMatch(segment -> segment.getDepartureDate()
-                                .isBefore(segment.getArrivalDate())))
-                .collect(Collectors.toList());
+        List<Flight> listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate =eraseSegmentsWithArrivalDateEarlieThanDepartureDate(listFlight);
 
         System.out.println("textMessage = " + textMessage);
 
@@ -58,21 +47,17 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     //Метод eraseSegmentsWithArrivalDateEarlieThanDepartureDate без вывода названия метода
     @Override
     public List<Flight> eraseSegmentsWithArrivalDateEarlieThanDepartureDate(List<Flight> listFlight) {
-        List<Flight> listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate = listFlight
+        return listFlight
                 .stream()
                 .filter(flight -> flight.getSegments().stream()
                         .allMatch(segment -> segment.getDepartureDate().isBefore(segment.getArrivalDate())))
                 .collect(Collectors.toList());
-        return listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate;
     }
 
     //Метод eraselightsWhereLandingMoreTwwoHoudrs с выводом названия метода нужен для наглядности
     @Override
     public List<Flight> eraselightsWhereLandingMoreTwwoHoudrs(List<Flight> listFlight, String textMessage) {
-        List<Flight> listWithoutEraseFlightsArrivalAfterNow = listFlight.stream()
-                .filter(flight ->
-                        searchFlightWhereLandingMorreThenTwoHours(flight.getSegments()))
-                .collect(Collectors.toList());
+        List<Flight> listWithoutEraseFlightsArrivalAfterNow = eraselightsWhereLandingMoreTwwoHoudrs(listFlight);
 
         System.out.println("textMessage = " + textMessage);
 
@@ -85,11 +70,10 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     //Метод eraselightsWhereLandingMoreTwwoHoudrs без вывода названия метода
     @Override
     public List<Flight> eraselightsWhereLandingMoreTwwoHoudrs(List<Flight> listFlight) {
-        List<Flight> listWithoutEraseFlightsArrivalAfterNow = listFlight.stream()
+        return listFlight.stream()
                 .filter(flight ->
                         searchFlightWhereLandingMorreThenTwoHours(flight.getSegments()))
                 .collect(Collectors.toList());
-        return listWithoutEraseFlightsArrivalAfterNow;
     }
 
     //реализация модуля для поиска для отсеивания рейсов с нахождением 2 часов между прилетом и вылетом следующего рейса на земле
