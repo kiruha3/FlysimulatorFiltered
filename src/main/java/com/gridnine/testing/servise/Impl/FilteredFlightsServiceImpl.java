@@ -90,7 +90,7 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
 
     /**
      * eraselightsWhereLandingMoreTwwoHoudrs() должен исключить ЕСЛИ ЕСТЬ сегменты Общее время, КОТОРЫХ проведённое на земле превышает два часа
-     *
+     * <p>
      * реализован с помощью stream, используется фильтрация
      * получаем полет, делим на сегменты получаем сегменты и с ними работаем
      * собираем в список
