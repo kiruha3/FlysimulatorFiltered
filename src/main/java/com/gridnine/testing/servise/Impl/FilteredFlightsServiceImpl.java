@@ -130,11 +130,9 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
                 if (i >= listSize) {
                     return true;
                 } else {
-                    if (getDuration(listSegment.getArrivalDate(), listSegments.get(i).getDepartureDate()).getSeconds() > 7200) {
-                        count += (int) getDuration(listSegment.getArrivalDate(), listSegments.get(i).getDepartureDate()).getSeconds();
-                        if (count > 7200) {
-                            return false;
-                        }
+                    count += (int) getDuration(listSegment.getArrivalDate(), listSegments.get(i).getDepartureDate()).getSeconds();
+                    if (count > 7200) {
+                        return false;
                     }
                 }
             }
