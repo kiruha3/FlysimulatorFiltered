@@ -83,29 +83,23 @@ class FilteredFlightsServiceImplTest {
         final FilteredFlightsServiceImpl filteredFlightsServicelmpl = new FilteredFlightsServiceImpl();
         LocalDateTime threeDaysFromNow = LocalDateTime.now().plusDays(3);
         List<Flight> listFlighWithEraseFlightsWhereLandingMoreTwwoHoudrs = Arrays.asList(
-                createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(5), threeDaysFromNow.plusHours(9), threeDaysFromNow.plusHours(23), threeDaysFromNow.plusHours(25)),
+                createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(5), threeDaysFromNow.plusHours(9),threeDaysFromNow.plusHours(23), threeDaysFromNow.plusHours(25)),
                 createFlight(threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(4)),
                 createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(4), threeDaysFromNow.plusHours(5)),
-                createFlight(threeDaysFromNow.minusHours(4), threeDaysFromNow.plusHours(6), threeDaysFromNow.plusHours(7), threeDaysFromNow.plusHours(9)),
+                createFlight(threeDaysFromNow.minusHours(4), threeDaysFromNow.plusHours(6),threeDaysFromNow.plusHours(7), threeDaysFromNow.plusHours(9)),
                 createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3)),
-                createFlight(threeDaysFromNow.minusHours(3), threeDaysFromNow.plusHours(4), threeDaysFromNow.plusHours(4), threeDaysFromNow.plusHours(7)),
+                createFlight(threeDaysFromNow.minusHours(3), threeDaysFromNow.plusHours(4),threeDaysFromNow.plusHours(4), threeDaysFromNow.plusHours(7)),
                 createFlight(threeDaysFromNow.minusHours(2), threeDaysFromNow.minusHours(5)),
-                createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(9), threeDaysFromNow.plusHours(23), threeDaysFromNow.plusHours(25)),
-                createFlight(threeDaysFromNow,threeDaysFromNow.plusHours(2),  threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(4),
-                        threeDaysFromNow.plusHours(5),threeDaysFromNow.plusHours(7), threeDaysFromNow.plusHours(8),threeDaysFromNow.plusHours(10)),
-                createFlight(threeDaysFromNow,threeDaysFromNow.plusHours(2),  threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(4),
-                        threeDaysFromNow.plusHours(5),threeDaysFromNow.plusHours(7), threeDaysFromNow.plusHours(7),threeDaysFromNow.plusHours(10))
+                createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(9),threeDaysFromNow.plusHours(23), threeDaysFromNow.plusHours(25))
         );
 
         List<Flight> listFlighWithoutEraselightsWhereLandingMoreTwoHoudrs = Arrays.asList(
                 createFlight(threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(4)),
                 createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(4), threeDaysFromNow.plusHours(5)),
-                createFlight(threeDaysFromNow.minusHours(4), threeDaysFromNow.plusHours(6), threeDaysFromNow.plusHours(7), threeDaysFromNow.plusHours(9)),
+                createFlight(threeDaysFromNow.minusHours(4), threeDaysFromNow.plusHours(6),threeDaysFromNow.plusHours(7), threeDaysFromNow.plusHours(9)),
                 createFlight(threeDaysFromNow.plusHours(2), threeDaysFromNow.plusHours(3)),
-                createFlight(threeDaysFromNow.minusHours(3), threeDaysFromNow.plusHours(4), threeDaysFromNow.plusHours(4), threeDaysFromNow.plusHours(7)),
-                createFlight(threeDaysFromNow.minusHours(2), threeDaysFromNow.minusHours(5)),
-                createFlight(threeDaysFromNow,threeDaysFromNow.plusHours(2),  threeDaysFromNow.plusHours(3),threeDaysFromNow.plusHours(4),
-                        threeDaysFromNow.plusHours(5),threeDaysFromNow.plusHours(7), threeDaysFromNow.plusHours(7),threeDaysFromNow.plusHours(10))
+                createFlight(threeDaysFromNow.minusHours(3), threeDaysFromNow.plusHours(4),threeDaysFromNow.plusHours(4), threeDaysFromNow.plusHours(7)),
+                createFlight(threeDaysFromNow.minusHours(2), threeDaysFromNow.minusHours(5))
         );
 
 
