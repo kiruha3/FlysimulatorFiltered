@@ -24,15 +24,14 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     }
 
     //Метод eraseDepartureToCurrentPointInTime без вывода названия метода
-
     /**
      * eraseDepartureToCurrentPointInTime() должен исключить Вылеты до текущего момента времени\
-     * <p>
+     *
      * реализован с помощью stream, используется фильтрация
      * получаем полет, делим на сегменты получаем сегменты и с ними работаем
      * собираем в список
      * и возвращаем обработанный список
-     **/
+     *  **/
     @Override
     public List<Flight> eraseDepartureToCurrentPointInTime(List<Flight> listFlight) {
         return listFlight
@@ -45,7 +44,7 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     //Метод eraseSegmentsWithArrivalDateEarlieThanDepartureDate с выводом названия метода нужен для наглядности
     @Override
     public List<Flight> eraseSegmentsWithArrivalDateEarlieThanDepartureDate(List<Flight> listFlight, String textMessage) {
-        List<Flight> listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate = eraseSegmentsWithArrivalDateEarlieThanDepartureDate(listFlight);
+        List<Flight> listWithoutSegmentsWithArrivalDateEarlieThanDepartureDate =eraseSegmentsWithArrivalDateEarlieThanDepartureDate(listFlight);
 
         System.out.println("textMessage = " + textMessage);
 
@@ -55,15 +54,14 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     }
 
     //Метод eraseSegmentsWithArrivalDateEarlieThanDepartureDate без вывода названия метода
-
     /**
      * eraseSegmentsWithArrivalDateEarlieThanDepartureDate() должен исключить ЕСЛИ ЕСТЬ сегменты с датой прилёта раньше даты вылета
-     * <p>
+     *
      * реализован с помощью stream, используется фильтрация
      * получаем полет, делим на сегменты получаем сегменты и с ними работаем
      * собираем в список
      * и возвращаем обработанный список
-     **/
+     *  **/
     @Override
     public List<Flight> eraseSegmentsWithArrivalDateEarlieThanDepartureDate(List<Flight> listFlight) {
         return listFlight
@@ -87,7 +85,6 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
 
 
     //Метод eraselightsWhereLandingMoreTwwoHoudrs без вывода названия метода
-
     /**
      * eraselightsWhereLandingMoreTwwoHoudrs() должен исключить ЕСЛИ ЕСТЬ сегменты Общее время, КОТОРЫХ проведённое на земле превышает два часа
      * <p>
@@ -95,7 +92,7 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
      * получаем полет, делим на сегменты получаем сегменты и с ними работаем
      * собираем в список
      * и возвращаем обработанный список
-     **/
+     *  **/
     @Override
     public List<Flight> eraselightsWhereLandingMoreTwwoHoudrs(List<Flight> listFlight) {
         return listFlight.stream()
@@ -105,17 +102,17 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
     }
 
     //реализация модуля для поиска для отсеивания рейсов с нахождением 2 часов между прилетом и вылетом следующего рейса на земле
-
     /**
      * searchFlightWhereLandingMorreThenTwoHours() Реализация поиска диапазона между прилетом и вылетом более 2 часов,
      * в случае нахождения возвращает
      * false
      * для пропуска элемента
-     * <p>
+     *
      * реализован с помощью stream, используется фильтрация
      * получаем полет, делим на сегменты получаем сегменты и с ними работаем
      * собираем в список
      * и возвращаем обработанный список
+     *
      **/
     @Override
     public boolean searchFlightWhereLandingMorreThenTwoHours(List<Segment> listSegments) {
@@ -131,15 +128,14 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
                     return true;
                 } else {
                     if (getDuration(listSegment.getArrivalDate(), listSegments.get(i).getDepartureDate()).getSeconds() > 7200) {
-                        count += (int) getDuration(listSegment.getArrivalDate(), listSegments.get(i).getDepartureDate()).getSeconds();
-                        if (count > 7200) {
-                            return false;
-                        }
+                    count+= (int) getDuration(listSegment.getArrivalDate(), listSegments.get(i).getDepartureDate()).getSeconds();
+                    if (count > 7200) {
+                        return false;
                     }
                 }
             }
-            return true;
         }
+        return true;
     }
 
     //реализация нахождения разницы между двумя датами
