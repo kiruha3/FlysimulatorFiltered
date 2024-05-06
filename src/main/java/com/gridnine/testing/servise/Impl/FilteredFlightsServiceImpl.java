@@ -112,8 +112,6 @@ public class FilteredFlightsServiceImpl implements FilteredFlightsService {
      * получаем полет, делим на сегменты получаем сегменты и с ними работаем
      * собираем в список
      * и возвращаем обработанный список
-     *
-     *
      **/
     @Override
     public boolean searchFlightWhereLandingMorreThenTwoHours(List<Segment> listSegments) {
